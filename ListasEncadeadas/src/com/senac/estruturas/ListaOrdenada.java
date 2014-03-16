@@ -15,34 +15,44 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 			anterior = nodo;
 			nodo = nodo.getNext();
 		}
+		
 		return nodo;
 	}
 
 	@Override
-	public void insert(Nodo<T> novo) {
+	public void insert(Nodo<T> novo)
+	{
 		Nodo<T> anterior = procuraNodo(novo.getData());
+
 		
 		if (anterior != null) {
 			novo.setNext(anterior.getNext());
 			anterior.setNext(novo);
+			if (anterior == tail)
+				tail = novo;
 		} else {
-			
-			
+			if (tail != null) {
+				tail.setNext(novo);
+			} else {
+				head = novo;
+			}
+			tail = novo;
 		}
-		
 	}
+	
 	@Override
-	public void insert(Nodo<T> novo, Nodo<T> anterior) {
+	public void insert(Nodo<T> novo, Nodo<T> anterior)
+	{
 		insert(novo);
 	}
 	
+	@Override
 	public void append(Nodo<T> novo) {
 		insert(novo);
 	}
 	
 	public static void main(String[] args) {
 		// criar lista
-		
 		ListaOrdenada<Integer> lista = new ListaOrdenada<Integer>();
 		
 		Nodo<Integer> novo = new Nodo<Integer>(1);
@@ -56,4 +66,5 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		
 		lista.print();
 	}
+
 }
