@@ -1,4 +1,4 @@
-package com.senac.contatos;
+package com.senac.model;
 
 public class Pessoa {
 	

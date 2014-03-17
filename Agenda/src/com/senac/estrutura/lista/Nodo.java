@@ -1,4 +1,4 @@
-package com.senac.estruturas;
+package com.senac.estrutura.lista;
 
 public class Nodo<T> {
 
