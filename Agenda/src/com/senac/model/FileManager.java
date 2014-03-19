@@ -13,17 +13,14 @@ public class FileManager {
 
 	public String[] Read() {
 
-		arrays = null;
-		String line = "";
+		String line = null;
 		int i = 0;
 		try {
 			FileReader reader = new FileReader(file);
 			BufferedReader leitor = new BufferedReader(reader);
 			while ((line = leitor.readLine()) != null) {
-				i = i + 1;
-				arrays[i] = leitor.readLine();
-				
-				//System.out.println(i+" - "+line);
+				arrays[i++] = line;
+				System.out.println(line);
 			}
 			leitor.close();
 			reader.close();

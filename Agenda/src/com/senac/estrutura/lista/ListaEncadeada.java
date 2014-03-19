@@ -1,27 +1,28 @@
 package com.senac.estrutura.lista;
 
 import static java.lang.System.out;
+import com.senac.model.Nodo;
 
-public class ListaEncadeada<T> {
+public class ListaEncadeada<String> {
 
-	protected Nodo<T> head;
-	protected Nodo<T> tail;
+	protected Nodo<String> head;
+	protected Nodo<String> tail;
 
-	public void insert(Nodo<T> novo) {
+	public void insert(Nodo<String> novo) {
 		novo.setNext(head);
 		head = novo;
 		if (tail == null)
 			tail = novo;
 	}
 
-	public void insert(Nodo<T> novo, Nodo<T> anterior) {
+	public void insert(Nodo<String> novo, Nodo<String> anterior) {
 		novo.setNext(anterior.getNext());
 		anterior.setNext(novo);
 		if (anterior == tail)
 			tail = novo;
 	}
 
-	public void append(Nodo<T> novo) {
+	public void append(Nodo<String> novo) {
 		if (tail != null)
 			tail.setNext(novo);
 		else
@@ -30,9 +31,9 @@ public class ListaEncadeada<T> {
 	}
 
 	public void print() {
-		Nodo<T> elem = head;
+		Nodo<String> elem = head;
 		do {
-			out.println(elem.getData());
+			out.println("Nome: "+elem.getData()+" Fone: "+elem.getFone());
 			elem = elem.getNext();
 		} while (elem != null);
 	}

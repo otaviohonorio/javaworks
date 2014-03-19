@@ -1,10 +1,12 @@
 package com.senac.estrutura.lista;
 
-public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
+import com.senac.model.Nodo;
 
-	private Nodo<T> procuraNodo(T data) {
-		Nodo<T> nodo = head;
-		Nodo<T> anterior = null;
+public class ListaOrdenada<String extends Comparable<String>> extends ListaEncadeada<String> {
+
+	private Nodo<String> procuraNodo(String data) {
+		Nodo<String> nodo = head;
+		Nodo<String> anterior = null;
 
 		while (nodo != null) {
 			int cmp = nodo.getData().compareTo(data);
@@ -20,8 +22,8 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	}
 
 	@Override
-	public void insert(Nodo<T> novo) {
-		Nodo<T> anterior = procuraNodo(novo.getData());
+	public void insert(Nodo<String> novo) {
+		Nodo<String> anterior = procuraNodo(novo.getData());
 
 		if (anterior != null) {
 			novo.setNext(anterior.getNext());
@@ -39,12 +41,12 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	}
 
 	@Override
-	public void insert(Nodo<T> novo, Nodo<T> anterior) {
+	public void insert(Nodo<String> novo, Nodo<String> anterior) {
 		insert(novo);
 	}
 
 	@Override
-	public void append(Nodo<T> novo) {
+	public void append(Nodo<String> novo) {
 		insert(novo);
 	}
 
