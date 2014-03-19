@@ -37,5 +37,4 @@ public class ListaEncadeada<String> {
 			elem = elem.getNext();
 		} while (elem != null);
 	}
-
 }

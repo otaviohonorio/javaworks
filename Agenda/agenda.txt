@@ -1,0 +1,7 @@
+TCHE = 123
+eu = 345
+MANOLO = 345
+ahauhu = 657474
+otto = 98798479843
+oi nelson = 999999999
+clebler chato = 444444444

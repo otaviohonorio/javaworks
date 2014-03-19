@@ -8,40 +8,39 @@ import java.io.IOException;
 
 public class FileManager {
 
-	private String file = "/home/otto/workspace/contatos.txt";
-	private String arrays[];
+	private String file = "D:\\Eclipse\\Agenda\\agenda.txt";
 
 	public String[] Read() {
 
 		String line = null;
+		String tmp = "";
+
 		int i = 0;
 		try {
 			FileReader reader = new FileReader(file);
 			BufferedReader leitor = new BufferedReader(reader);
 			while ((line = leitor.readLine()) != null) {
-				arrays[i++] = line;
-				System.out.println(line);
+				tmp = tmp + line + ";";
+				i++;
 			}
 			leitor.close();
 			reader.close();
 		} catch (Exception e) {
 			System.out.println("Error: "+ e.getMessage());
 		}
-		return arrays;
+		String [] linha = new String[i];
+		linha = tmp.split(";");
+
+		return linha;
 	}
 
 	public void Write(String name, String number) {
 		try {
-
-			FileWriter fw = new FileWriter(file);
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(name);
-			bw.newLine();
-			bw.write(number);
-			bw.close();
-
+			FileWriter fw = new FileWriter(file,true);
+			fw.append("\n" + name + " = " + number);
+			fw.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Error: "+ e.getMessage());
 		}
 	}
 }
