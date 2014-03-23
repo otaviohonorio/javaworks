@@ -82,9 +82,8 @@ public class app {
 
 		while (head != lista.getTail()) {
 
-			boolean cmp = head.getData().getNome().contains(nome);
-
-			out.println(head.getData().getNome() + " = " + nome);
+			out.println("Test: "+head.getData().getNome() + " = " + nome);
+			boolean cmp = head.getData().getNome().toLowerCase().contains(nome.toLowerCase());
 			out.println(cmp);
 
 			if (cmp = true) {
@@ -119,7 +118,7 @@ public class app {
 		}
 
 		ler = new Scanner(System.in);
-		int opcao;
+		int opt;
 
 		do {
 			out.println("AGENDA");
@@ -127,12 +126,12 @@ public class app {
 			out.println("[2] Excluir");
 			out.println("[3] Listar");
 			out.println("[4] Pesquisar");
-			out.println("[5] Busca");
+			out.println("[5] Buscar");
 			out.println("[0] Encerrar");
 			out.println("Opcao: ");
-			opcao = ler.nextInt();
+			opt = ler.nextInt();
 
-			switch (opcao) {
+			switch (opt) {
 			case 1:
 				novo = incluir(lista, novo);
 				break;
@@ -144,12 +143,16 @@ public class app {
 			case 3:
 				listar(lista);
 				break;
+				
 			case 4:
 				pesquisar(lista);
+				break;
+
+			//case 5:
+			//	buscar(lista);
 			}
+
 			System.out.println();
-		} while (opcao != 0);
-
+		} while (opt != 0);
 	}
-
 }
