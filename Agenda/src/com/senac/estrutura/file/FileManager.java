@@ -1,14 +1,14 @@
-package com.senac.model;
+package com.senac.estrutura.file;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileManager {
 
-	private String file = "D:\\Eclipse\\Agenda\\agenda.txt";
+	private String dir = System.getProperty("user.dir");
+	private String file = dir+"/agenda.txt";
 
 	public String[] Read() {
 

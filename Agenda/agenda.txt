@@ -1,7 +1,7 @@
-TCHE = 123
-eu = 345
-MANOLO = 345
-ahauhu = 657474
-otto = 98798479843
-oi nelson = 999999999
-clebler chato = 444444444
+joao = 555-123
+maria = 555-345
+lara = 555-345
+dumbledor = 555-657
+otto = 555-987
+frodo = 555-999
+ismigal = 555-444

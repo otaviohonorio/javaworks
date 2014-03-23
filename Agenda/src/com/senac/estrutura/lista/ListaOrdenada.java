@@ -1,19 +1,20 @@
 package com.senac.estrutura.lista;
 
-import com.senac.model.Nodo;
+public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 
-public class ListaOrdenada<String extends Comparable<String>> extends ListaEncadeada<String> {
-
-	private Nodo<String> procuraNodo(String data) {
-		Nodo<String> nodo = head;
-		Nodo<String> anterior = null;
+	private Nodo<T> procuraNodo(T data) {
+		Nodo<T> nodo = head;
+		Nodo<T> anterior = null;
 
 		while (nodo != null) {
 			int cmp = nodo.getData().compareTo(data);
+
 			if (cmp == 0)
 				return nodo;
-			if (cmp > 0)
+
+			if (cmp > 0) {
 				return anterior;
+			}
 			anterior = nodo;
 			nodo = nodo.getNext();
 		}
@@ -22,32 +23,65 @@ public class ListaOrdenada<String extends Comparable<String>> extends ListaEncad
 	}
 
 	@Override
-	public void insert(Nodo<String> novo) {
-		Nodo<String> anterior = procuraNodo(novo.getData());
+	public void insert(Nodo<T> novo) {
+		Nodo<T> anterior = procuraNodo(novo.getData());
 
 		if (anterior != null) {
 			novo.setNext(anterior.getNext());
 			anterior.setNext(novo);
+
 			if (anterior == tail)
 				tail = novo;
+
 		} else {
 			if (tail != null) {
-				tail.setNext(novo);
+
+				int test = novo.getData().compareTo(head.getData());
+				if (test < 0) {
+					novo.setNext(head);
+					head = novo;
+				} else {
+					tail.setNext(novo);
+				}
+
 			} else {
 				head = novo;
+				tail = novo;
 			}
-			tail = novo;
+
 		}
 	}
 
 	@Override
-	public void insert(Nodo<String> novo, Nodo<String> anterior) {
+	public void insert(Nodo<T> novo, Nodo<T> anterior) {
 		insert(novo);
 	}
 
 	@Override
-	public void append(Nodo<String> novo) {
+	public void append(Nodo<T> novo) {
 		insert(novo);
+	}
+
+	// Remove n
+	public void remove(Nodo<T> nodo) {
+		Nodo<T> inicio = this.getHead();
+		Nodo<T> anterior = null;
+
+		while (inicio != this.getTail()) {
+			if (nodo == inicio) {
+				if (anterior != null) {
+					anterior.setNext(inicio.getNext());
+				} else {
+					inicio.getNext();
+				}
+			}
+
+			anterior = inicio;
+
+			inicio = inicio.getNext();
+
+		}
+
 	}
 
 }
