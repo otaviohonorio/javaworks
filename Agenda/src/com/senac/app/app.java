@@ -5,8 +5,6 @@ import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.naming.BinaryRefAddr;
-
 import com.senac.estrutura.file.FileManager;
 import com.senac.estrutura.lista.ListaOrdenada;
 import com.senac.estrutura.lista.Nodo;
@@ -15,7 +13,6 @@ import com.senac.estrutura.pessoa.Pessoa;
 public class app {
 
 	private static Scanner ler;
-	private static String names[];
 
 	private static Nodo<Pessoa> incluir(ListaOrdenada<Pessoa> lista,
 			Nodo<Pessoa> novo) {
