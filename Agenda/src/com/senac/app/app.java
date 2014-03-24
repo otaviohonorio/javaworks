@@ -2,7 +2,10 @@ package com.senac.app;
 
 import static java.lang.System.out;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.naming.BinaryRefAddr;
 
 import com.senac.estrutura.file.FileManager;
 import com.senac.estrutura.lista.ListaOrdenada;
@@ -12,6 +15,7 @@ import com.senac.estrutura.pessoa.Pessoa;
 public class app {
 
 	private static Scanner ler;
+	private static String names[];
 
 	private static Nodo<Pessoa> incluir(ListaOrdenada<Pessoa> lista,
 			Nodo<Pessoa> novo) {
@@ -26,7 +30,7 @@ public class app {
 
 		Pessoa p = new Pessoa();
 		p.setNome(nome);
-		p.setTelefone(nome);
+		p.setTelefone(fone);
 
 		if (novo == null) {
 			novo = new Nodo<Pessoa>(p);
@@ -50,6 +54,61 @@ public class app {
 			elem = elem.getNext();
 		} while (elem != null);
 
+	}
+
+	public static boolean contains(int[] a, int b) {
+		if (a.length == 0) {
+			return false;
+		}
+		int low = 0;
+		int high = a.length - 1;
+
+		while (low <= high) {
+			int middle = (low + high) / 2;
+			if (b > a[middle]) {
+				low = middle + 1;
+			} else if (b < a[middle]) {
+				high = middle - 1;
+			} else { // The element has been found
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static void buscar(ListaOrdenada<Pessoa> lista) {
+
+		ler = new Scanner(System.in);
+		String nome;
+
+		out.println("Nome:");
+		nome = ler.nextLine();
+
+		ArrayList<String> names = new ArrayList<String>();
+		ArrayList<String> fones = new ArrayList<String>();
+		
+		Nodo<Pessoa> elem = lista.getHead();
+		do {
+			names.add(((Pessoa) elem.getData()).getNome());
+			fones.add(((Pessoa) elem.getData()).getTelefone());
+			elem = elem.getNext();
+		} while (elem != null);
+
+		int first = 0;
+		int last = names.size();
+
+		while (first < last) {
+			int mid = first + ((last - first) / 2);
+			if (nome.compareTo(names.get(mid)) < 0) {
+				last = mid;
+			} else if (nome.compareTo(names.get(mid)) > 0) {
+				first = mid + 1;
+			} else {
+				out.println("middle: "+mid);
+			}
+		}
+		int r = (first);
+		out.println("Nome: "+names.get(r)+" Fone: "+fones.get(r));
 	}
 
 	public static void excluir(ListaOrdenada<Pessoa> lista) {
@@ -78,21 +137,17 @@ public class app {
 		out.println("Nome:");
 		nome = ler.nextLine();
 
-		Nodo<Pessoa> head = lista.getHead();
-
-		while (head != lista.getTail()) {
-
-			out.println("Test: "+head.getData().getNome() + " = " + nome);
-			boolean cmp = head.getData().getNome().toLowerCase().contains(nome.toLowerCase());
-			out.println(cmp);
-
-			if (cmp = true) {
-				out.println("Nome: " + ((Pessoa) head.getData()).getNome()
-						+ " Telefone: "
-						+ ((Pessoa) head.getData()).getTelefone());
+		Nodo<Pessoa> elem = lista.getHead();
+		do {
+			boolean cmp = elem.getData().getNome().toLowerCase()
+					.contains(nome.toLowerCase());
+			if (cmp == true) {
+				out.println("Nome: " + ((Pessoa) elem.getData()).getNome()
+						+ " Fone: " + ((Pessoa) elem.getData()).getTelefone());
 			}
-			head = head.getNext();
-		}
+			elem = elem.getNext();
+		} while (elem != null);
+
 	}
 
 	public static void main(String[] args) {
@@ -143,13 +198,13 @@ public class app {
 			case 3:
 				listar(lista);
 				break;
-				
+
 			case 4:
 				pesquisar(lista);
 				break;
 
-			//case 5:
-			//	buscar(lista);
+			case 5:
+				buscar(lista);
 			}
 
 			System.out.println();
