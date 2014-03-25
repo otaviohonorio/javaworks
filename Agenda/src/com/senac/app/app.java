@@ -73,15 +73,16 @@ public class app {
 
 		int first = 0;
 		int last = names.size();
-
+		
 		while (first < last) {
 			int mid = first + ((last - first) / 2);
 			if (nome.compareTo(names.get(mid)) < 0) {
-				last = mid;
+				last = mid - 1;
 			} else if (nome.compareTo(names.get(mid)) > 0) {
 				first = mid + 1;
 			} else {
-				out.println("middle: "+mid);
+				first = mid;
+				break;
 			}
 		}
 		int r = (first);
@@ -138,10 +139,10 @@ public class app {
 		int i = 0;
 		for (String s : linha) {
 			String[] tmp = linha[i].split("=");
-
+			
 			Pessoa p = new Pessoa();
-			p.setNome(tmp[0]);
-			p.setTelefone(tmp[1]);
+			p.setNome(tmp[0].trim());
+			p.setTelefone(tmp[1].trim());
 
 			Nodo<Pessoa> contato = new Nodo<Pessoa>(p);
 
@@ -158,7 +159,7 @@ public class app {
 			out.println("[2] Excluir");
 			out.println("[3] Listar");
 			out.println("[4] Pesquisar");
-			out.println("[5] Buscar");
+			out.println("[5] Busca Binaria");
 			out.println("[0] Encerrar");
 			out.println("Opcao: ");
 			opt = ler.nextInt();
