@@ -1,6 +1,6 @@
-package com.senac.telas;
+package com.senac.tela;
 
-public class acerto {
+public class mostraAcerto {
 
 	public static boolean acertou(int[] tiro, int[][] navios){
         
