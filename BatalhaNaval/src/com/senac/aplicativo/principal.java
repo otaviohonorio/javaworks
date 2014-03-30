@@ -10,16 +10,13 @@ public class principal {
 	        int tentativas=0, acertos=0;
 	        
 	        montaTabuleiro t = new montaTabuleiro();
-	        int[][] tab = t.getTabuleiro();
-
-	        montaEmbarcacoes n = new montaEmbarcacoes();
-	        int[][] nav = n.getNavios();
+	        String[][] tab = t.getTabuleiro();
 	        
 	        chamaTiro i = new chamaTiro();
 	        int[] tir = i.getTiro();
 	        
 	        montaTabuleiro.inicializaTabuleiro(tab);
-	        montaEmbarcacoes.iniciaNavios(nav);
+	        montaEmbarcacoes.iniciaEmbarcacoes(tab);
 	        	        
 	        System.out.println();
 	        
@@ -28,12 +25,11 @@ public class principal {
 	            chamaTiro.darTiro(tir);
 	            tentativas++;
 	            
-	            if(mostraAcerto.acertou(tir,nav)){
+	            if(mostraAcerto.acertou(tir,tab)){
 	                acertos++;
 	            }                
 	            
-	            montaTabuleiro.alteraTabuleiro(tir,nav,tab);
-	            
+	            montaTabuleiro.alteraTabuleiro(tir,tab);
 
 	        }while(acertos!=10 || tentativas==15);
 	        
