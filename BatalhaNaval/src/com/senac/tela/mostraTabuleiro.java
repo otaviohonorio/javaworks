@@ -4,20 +4,16 @@ public class mostraTabuleiro {
 
 	public static void telaTabuleiro(String[][] tabuleiro) {
 
-		System.out.println("Embarcacoes:");
-		System.out.println("\tA \tB \tC \tD \tE \tF \tG \tH \tI \tJ");
-		System.out.println();
-		
+		/*
 		for (int linha = 0; linha < tabuleiro.length; linha++) {
 			System.out.print((linha) + "");
 			for (int coluna = 0; coluna < tabuleiro.length; coluna++) {
 				System.out.print("\t" + tabuleiro[linha][coluna]);
 			}
 			System.out.println();
-		}
-		
+		}		
 		System.out.println("\n---------------------------------------------------------------------------------------------\n");
-
+		*/
 		
 		System.out.println("\tA \tB \tC \tD \tE \tF \tG \tH \tI \tJ");
 		System.out.println();

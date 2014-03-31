@@ -34,7 +34,7 @@ public class embarcacoes {
 		embarcacoes submarino = new embarcacoes();
 		submarino.setTamanho(1);
 		submarino.setQuantidade(5);
-		submarino.setIdent("5");
+		submarino.setIdent("1");
 		
 		return submarino;
 	}
@@ -43,7 +43,7 @@ public class embarcacoes {
 		embarcacoes torpedeiro = new embarcacoes();
 		torpedeiro.setTamanho(2);
 		torpedeiro.setQuantidade(3);
-		torpedeiro.setIdent("4");
+		torpedeiro.setIdent("2");
 		
 		return torpedeiro;
 	}
@@ -61,7 +61,7 @@ public class embarcacoes {
 		embarcacoes destroyer = new embarcacoes();
 		destroyer.setTamanho(4);
 		destroyer.setQuantidade(2);
-		destroyer.setIdent("2");
+		destroyer.setIdent("4");
 		
 		return destroyer;
 	}
@@ -70,7 +70,7 @@ public class embarcacoes {
 		embarcacoes portaAviao = new embarcacoes();
 		portaAviao.setTamanho(5);
 		portaAviao.setQuantidade(1);
-		portaAviao.setIdent("1");
+		portaAviao.setIdent("5");
 		
 		return portaAviao;
 	}

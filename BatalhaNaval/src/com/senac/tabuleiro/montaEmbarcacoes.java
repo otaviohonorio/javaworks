@@ -4,33 +4,17 @@ import java.util.Random;
 
 public class montaEmbarcacoes {
 
-	static Random sorteio = new Random();
-
 	public static void iniciaSubmarino(String[][] tab) {
 
 		int qtd = embarcacoes.submarino().getQuantidade();
 		int tamanho = embarcacoes.submarino().getTamanho();
-		int delta = (tab.length - tamanho);
 		String ident = embarcacoes.submarino().getIdent();
 
 		for (int q = 0; q < qtd; q++) {
+			int[] arr = verificaEspaco(tab, tamanho);
 
-			int linha = sorteio.nextInt(tab.length);
-			int coluna = sorteio.nextInt(delta);
-
-			if (tab[linha][coluna].equals(".")) {
-				for (int t = 0; t < tamanho; t++) {
-					if (tab[linha][coluna].equals(".")) {
-						tab[linha][coluna] = ident;
-					}else{
-						if (linha > delta) {
-							linha--;
-						}else{
-							linha++;
-						}
-					}
-					coluna++;
-				}
+			for (int coluna = 0; coluna < tamanho; coluna++) {
+				tab[arr[0]][arr[1]++] = ident;
 			}
 		}
 	}
@@ -39,27 +23,13 @@ public class montaEmbarcacoes {
 
 		int qtd = embarcacoes.torpedeiro().getQuantidade();
 		int tamanho = embarcacoes.torpedeiro().getTamanho();
-		int delta = (tab.length - tamanho);
 		String ident = embarcacoes.torpedeiro().getIdent();
 
 		for (int q = 0; q < qtd; q++) {
+			int[] arr = verificaEspaco(tab, tamanho);
 
-			int linha = sorteio.nextInt(tab.length);
-			int coluna = sorteio.nextInt(delta);
-
-			if (tab[linha][coluna].equals(".")) {
-				for (int t = 0; t < tamanho; t++) {
-					if (tab[linha][coluna].equals(".")) {
-						tab[linha][coluna] = ident;
-					}else{
-						if (linha > delta) {
-							linha--;
-						}else{
-							linha++;
-						}
-					}
-					coluna++;
-				}
+			for (int coluna = 0; coluna < tamanho; coluna++) {
+				tab[arr[0]][arr[1]++] = ident;
 			}
 		}
 	}
@@ -68,27 +38,13 @@ public class montaEmbarcacoes {
 
 		int qtd = embarcacoes.fragata().getQuantidade();
 		int tamanho = embarcacoes.fragata().getTamanho();
-		int delta = (tab.length - tamanho);
 		String ident = embarcacoes.fragata().getIdent();
 
 		for (int q = 0; q < qtd; q++) {
+			int[] arr = verificaEspaco(tab, tamanho);
 
-			int linha = sorteio.nextInt(tab.length);
-			int coluna = sorteio.nextInt(delta);
-
-			if (tab[linha][coluna].equals(".")) {
-				for (int t = 0; t < tamanho; t++) {
-					if (tab[linha][coluna].equals(".")) {
-						tab[linha][coluna] = ident;
-					}else{
-						if (linha > delta) {
-							linha--;
-						}else{
-							linha++;
-						}
-					}
-					coluna++;
-				}
+			for (int coluna = 0; coluna < tamanho; coluna++) {
+				tab[arr[0]][arr[1]++] = ident;
 			}
 		}
 	}
@@ -97,27 +53,13 @@ public class montaEmbarcacoes {
 
 		int qtd = embarcacoes.destroyer().getQuantidade();
 		int tamanho = embarcacoes.destroyer().getTamanho();
-		int delta = (tab.length - tamanho);
 		String ident = embarcacoes.destroyer().getIdent();
 
 		for (int q = 0; q < qtd; q++) {
+			int[] arr = verificaEspaco(tab, tamanho);
 
-			int linha = sorteio.nextInt(tab.length);
-			int coluna = sorteio.nextInt(delta);
-
-			if (tab[linha][coluna].equals(".")) {
-				for (int t = 0; t < tamanho; t++) {
-					if (tab[linha][coluna].equals(".")) {
-						tab[linha][coluna] = ident;
-					}else{
-						if (linha > delta) {
-							linha--;
-						}else{
-							linha++;
-						}
-					}
-					coluna++;
-				}
+			for (int coluna = 0; coluna < tamanho; coluna++) {
+				tab[arr[0]][arr[1]++] = ident;
 			}
 		}
 	}
@@ -126,29 +68,46 @@ public class montaEmbarcacoes {
 
 		int qtd = embarcacoes.portaAviao().getQuantidade();
 		int tamanho = embarcacoes.portaAviao().getTamanho();
-		int delta = (tab.length - tamanho);
 		String ident = embarcacoes.portaAviao().getIdent();
 
 		for (int q = 0; q < qtd; q++) {
+			int[] arr = verificaEspaco(tab, tamanho);
+			
+			for (int coluna = 0; coluna < tamanho; coluna++) {
+				tab[arr[0]][arr[1]++] = ident;
+			}
+		}
+	}
 
-			int linha = sorteio.nextInt(tab.length);
-			int coluna = sorteio.nextInt(delta);
+	public static int[] verificaEspaco(String[][] tab, int tamanho) {
 
-			if (tab[linha][coluna].equals(".")) {
-				for (int t = 0; t < tamanho; t++) {
+		int[] arr = { -1, -1 };
+		boolean done = false;
+		Random sorteio = new Random();
+		
+		if (tamanho == 1) {
+			arr[0] = sorteio.nextInt(tab.length);
+			arr[1] = sorteio.nextInt(tab.length);
+			return arr;
+		}
+		
+		while (done == false) {
+			for (int linha = sorteio.nextInt(tab.length); linha < tab.length; linha++) {
+				for (int coluna = sorteio.nextInt(tab.length); coluna < tab.length; coluna++) {
 					if (tab[linha][coluna].equals(".")) {
-						tab[linha][coluna] = ident;
+					
+						if (coluna == tamanho) {
+							arr[0] = linha;
+							arr[1] = coluna;
+							done = true;
+						}		
 					}else{
-						if (linha > delta) {
-							linha--;
-						}else{
-							linha++;
-						}
+						break;
 					}
-					coluna++;
 				}
 			}
 		}
+		return arr;
 	}
 
 	public static void iniciaEmbarcacoes(String[][] tabuleiro) {
@@ -158,6 +117,6 @@ public class montaEmbarcacoes {
 		iniciaFragata(tabuleiro);
 		iniciaDestroyer(tabuleiro);
 		iniciaPortaAviao(tabuleiro);
-		
+
 	}
 }
