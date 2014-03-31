@@ -20,8 +20,8 @@ public class montaTabuleiro {
 
 	public static void alteraTabuleiro(int[] tiro, String[][] tabuleiro) {
 
-		if (mostraAcerto.acertou(tiro,tabuleiro)) {
-			tabuleiro[tiro[0]][tiro[1]] = "O";
+		if (mostraAcerto.acertou(tiro,tabuleiro) == true) {
+			tabuleiro[tiro[0]][tiro[1]] = "0";
 		}else{
 			tabuleiro[tiro[0]][tiro[1]] = "-";
 		}

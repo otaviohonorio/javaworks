@@ -31,7 +31,7 @@ public class principal {
 	            
 	            montaTabuleiro.alteraTabuleiro(tir,tab);
 
-	        }while(acertos!=10 || tentativas==15);
+	        }while(acertos!=13 || tentativas==15);
 	        
 	        System.out.println("\n");
 	        System.out.println("Jogo terminado. Acertos: "+acertos+" / Tentativas: "+tentativas);
