@@ -1,13 +1,17 @@
 package com.senac.aplicativo;
 
+import com.senac.regra.jogador;
 import com.senac.tabuleiro.*;
 import com.senac.tela.*;
 
 public class principal {
 
 	    public static void main(String[] args) {
-	    		        
-	        int tentativas=0, acertos=0;
+	        
+	        jogador j = new jogador();
+	        int tentativas = j.getTentativas();
+	        int acertos = j.getAcertos();
+	        int pontos = j.getPontos();
 	        
 	        montaTabuleiro t = new montaTabuleiro();
 	        String[][] tab = t.getTabuleiro();
@@ -31,7 +35,7 @@ public class principal {
 	            
 	            montaTabuleiro.alteraTabuleiro(tir,tab);
 
-	        }while(acertos!=13 || tentativas==15);
+	        }while(acertos!=15 || tentativas==15);
 	        
 	        System.out.println("\n");
 	        System.out.println("Jogo terminado. Acertos: "+acertos+" / Tentativas: "+tentativas);
