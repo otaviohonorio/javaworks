@@ -20,21 +20,18 @@ public class BubbleSort {
 		for (int i = 0; i < n; i++) {
 			for (int j = 1; j < (n - i); j++) {
 
-				//System.out.println("Compara - A -1 (" + array[j - 1] + " > " + array[j]+ ") A");
 				compara++;
 				
 				int t;
 				
 				if (array[j - 1] > array[j]) {
-					//System.out.println("A -1: " + array[j - 1] + " A: " + array[j]);
-
+					
 					t = array[j - 1];
 
 					array[j - 1] = array[j];
 
 					array[j] = t;
 				
-					//System.out.println("Troca");
 					troca++;
 
 				}

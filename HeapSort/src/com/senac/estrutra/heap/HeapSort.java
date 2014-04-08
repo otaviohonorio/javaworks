@@ -1,10 +1,13 @@
 package com.senac.estrutra.heap;
 
 public class HeapSort {
+	
+	public static int compara = 0;
+	public static int troca = 0;
 
 	public static void main(String[] args) {
 
-		int array[] = { 9, 5, 4, 6, 8, 7, 1, 3, 2, 0 };
+		int array[] = { 9, 5, 4, 6, 8, 7, 1, 3, 2 };
 
 		System.out.print("Antes da ordenacao: ");
 
@@ -21,6 +24,7 @@ public class HeapSort {
 			System.out.print(array[i] + " ");
 		}
 		System.out.println();
+		System.out.println("Comparacoes: "+compara+" Troca: "+troca);
 
 	}
 
@@ -35,32 +39,40 @@ public class HeapSort {
 	}
 
 	private static void buildMaxHeap(int[] v) {
-		for (int i = v.length / 2 - 1; i >= 0; i--)
+		for (int i = v.length / 2; i >= 0; i--)
 			maxHeapify(v, i, v.length);
 	}
 
 	private static void maxHeapify(int[] v, int pos, int n) {
-		int maxi;
-		int l = 2 * pos + 1;
+		int max;
+		
+		int left = 2 * pos + 1;
 		int right = 2 * pos + 2;
-		if ((l < n) && (v[l] > v[pos])) {
-			maxi = l;
+		
+		compara++;
+		if ((left < n) && (v[left] > v[pos])) {
+			max = left;
+			troca++;
 		} else {
-			maxi = pos;
+			max = pos;
 		}
-		if (right < n && v[right] > v[maxi]) {
-			maxi = right;
+		
+		compara++;
+		if ((right < n) && (v[right] > v[max])) {
+			max = right;
+			troca++;
 		}
-		if (maxi != pos) {
-			swap(v, pos, maxi);
-			maxHeapify(v, maxi, n);
+		
+		if (max != pos) {
+			swap(v, pos, max);
+			maxHeapify(v, max, n);
 		}
 	}
 
-	public static void swap(int[] v, int j, int aposJ) {
+	public static void swap(int[] v, int j, int apos) {
 		int aux = v[j];
-		v[j] = v[aposJ];
-		v[aposJ] = aux;
+		v[j] = v[apos];
+		v[apos] = aux;
 	}
 
 }
