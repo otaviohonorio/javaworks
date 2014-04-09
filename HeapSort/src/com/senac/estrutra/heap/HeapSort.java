@@ -54,6 +54,7 @@ public class HeapSort {
 			max = left;
 			troca++;
 		} else {
+			troca++;
 			max = pos;
 		}
 		
@@ -63,6 +64,7 @@ public class HeapSort {
 			troca++;
 		}
 		
+		compara++;
 		if (max != pos) {
 			swap(v, pos, max);
 			maxHeapify(v, max, n);
