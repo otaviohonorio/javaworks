@@ -26,5 +26,5 @@ public class montaTabuleiro {
 			tabuleiro[tiro[0]][tiro[1]] = "-";
 		}
 	}
-
+	
 }
