@@ -24,7 +24,7 @@ public class principal {
 	        	        
 	        System.out.println();
 	        
-	        do{
+	        do {
 	            mostraTabuleiro.telaTabuleiro(tab);
 	            chamaTiro.darTiro(tir);
 	            tentativas++;
@@ -35,10 +35,10 @@ public class principal {
 	            
 	            montaTabuleiro.alteraTabuleiro(tir,tab);
 
-	        }while(acertos!=15 || tentativas==15);
+	        } while(acertos!=15 || tentativas==15);
 	        
-	        System.out.println("\n");
-	        System.out.println("Jogo terminado. Acertos: "+acertos+" / Tentativas: "+tentativas);
+	        System.out.println("\n\n Jogo terminado. Acertos: "+acertos+" / Tentativas: "+tentativas);
 	        mostraTabuleiro.telaTabuleiro(tab);
+	        
 	    }
 }
