@@ -16,6 +16,8 @@ public class chamaTiro {
 
 		String[] alpha = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
 
+		System.out.println();
+		
 		System.out.print("Linha: ");
 		tiro[0] = entrada.nextInt();
 
@@ -27,5 +29,7 @@ public class chamaTiro {
 				tiro[1] = i;
 			}
 		}
+		
+		System.out.println();
 	}
 }

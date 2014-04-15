@@ -4,7 +4,7 @@ public class mostraTabuleiro {
 
 	public static void telaTabuleiro(String[][] tabuleiro) {
 
-		System.out.println("\tA \tB \tC \tD \tE \tF \tG \tH \tI \tJ");
+		/*System.out.println("\tA \tB \tC \tD \tE \tF \tG \tH \tI \tJ");
 		System.out.println();
 		
 		for (int linha = 0; linha < tabuleiro.length; linha++) {
@@ -15,7 +15,9 @@ public class mostraTabuleiro {
 			System.out.println();
 		}		
 		System.out.println("\n---------------------------------------------------------------------------------------------\n");
-				
+		*/
+		
+		System.out.println();
 		System.out.println("\tA \tB \tC \tD \tE \tF \tG \tH \tI \tJ");
 		System.out.println();
 
