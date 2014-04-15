@@ -8,6 +8,7 @@ public class HeapSort {
 	public static void main(String[] args) {
 
 		int array[] = { 9, 5, 4, 6, 8, 7, 1, 3, 2 };
+		//int array[] = { 3, 0, 2, 1 };
 
 		System.out.print("Antes da ordenacao: ");
 
@@ -39,8 +40,9 @@ public class HeapSort {
 	}
 
 	private static void buildMaxHeap(int[] v) {
-		for (int i = v.length / 2; i >= 0; i--)
+		for (int i = v.length / 2; i >= 0; i--) {
 			maxHeapify(v, i, v.length);
+		}
 	}
 
 	private static void maxHeapify(int[] v, int pos, int n) {
@@ -48,24 +50,24 @@ public class HeapSort {
 		
 		int left = 2 * pos + 1;
 		int right = 2 * pos + 2;
-		
-		compara++;
+
 		if ((left < n) && (v[left] > v[pos])) {
+			compara++;
+			
 			max = left;
-			troca++;
 		} else {
-			troca++;
 			max = pos;
 		}
 		
-		compara++;
 		if ((right < n) && (v[right] > v[max])) {
+			compara++;
+
 			max = right;
-			troca++;
 		}
 		
-		compara++;
 		if (max != pos) {
+			compara++;
+
 			swap(v, pos, max);
 			maxHeapify(v, max, n);
 		}
@@ -75,6 +77,7 @@ public class HeapSort {
 		int aux = v[j];
 		v[j] = v[apos];
 		v[apos] = aux;
+		troca++;
 	}
 
 }
