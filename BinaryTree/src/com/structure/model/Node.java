@@ -2,22 +2,12 @@ package com.structure.model;
 
 public class Node<T> {
 
-	public int key;
 	public Node<T> leftChild;
 	public Node<T> rightChild;
 	public T contact;
 
-	public Node(int key, T contact) {
-		this.key = key;
+	public Node(T contact) {
 		this.contact = contact;
-	}
-
-	public int getKey() {
-		return key;
-	}
-
-	public void setKey(int key) {
-		this.key = key;
 	}
 
 	public T getContact() {

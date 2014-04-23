@@ -1,10 +1,7 @@
 package com.main;
 
 import static java.lang.System.out;
-
-import java.util.Random;
 import java.util.Scanner;
-
 import com.structure.controller.Tree;
 import com.structure.model.Contact;
 import com.structure.utils.FileManager;
@@ -13,24 +10,27 @@ import com.structure.view.ViewNode;
 public class App {
 
 	private static Scanner read;
-	static Tree<Contact> theTree = new Tree<Contact>();
 
 	public static void main(String[] args) {
 
+		Tree<Contact> theTree = new Tree<Contact>();
+
 		FileManager f = new FileManager();
-		String[] linha = f.Read();
+		String[] line = f.Read();
 
 		int i = 0;
 
-		for (String s : linha) {
-
-			String[] tmp = linha[i].split("=");
+		for (int j = 0; j < line.length; j++) {
+			
+			String[] tmp = line[i].split("=");
 
 			Contact c = new Contact();
 			c.setName(tmp[0].trim());
 			c.setPhone(tmp[1].trim());
 
-			theTree.addNode(i, c);
+			out.println("HERE!");
+			
+			theTree.addNode(c);
 
 			i++;
 		}
@@ -51,7 +51,7 @@ public class App {
 			switch (opt) {
 
 			case 1:
-				insert();
+				insert(theTree);
 				break;
 
 			case 2:
@@ -59,11 +59,11 @@ public class App {
 				break;
 
 			case 3:
-				list();
+				list(theTree);
 				break;
 
 			case 4:
-				search();
+				search(theTree);
 
 			}
 
@@ -71,38 +71,33 @@ public class App {
 
 	}
 
-	public static void search() {
+	public static void search(Tree<Contact> theTree) {
 
-		// out.println("Name:");
-		// String name = read.nextLine();
+		out.println("Name: ");
+		String name = read.nextLine();
 
-		out.println("Key:");
-		int key = read.nextInt();
-
-		ViewNode.print(theTree.findNode(key));
+		ViewNode.print(theTree.findNode(name));
 
 	}
 
-	public static void insert() {
+	public static void insert(Tree<Contact> theTree) {
 
 		String name, phone;
 
-		out.println("Name:");
+		out.println("Name: ");
 		name = read.nextLine();
-		out.println("Phone:");
+		out.println("Phone: ");
 		phone = read.nextLine();
 
 		Contact c = new Contact();
 		c.setName(name);
 		c.setPhone(phone);
 
-		Random i = new Random();
-		int key = i.nextInt(20);
-		theTree.addNode(key, c);
+		theTree.addNode(c);
 
 	}
 
-	public static void list() {
+	public static void list(Tree<Contact> theTree) {
 
 		int opt;
 

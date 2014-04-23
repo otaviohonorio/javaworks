@@ -1,9 +1,20 @@
 package com.structure.controller;
 
+import com.structure.model.Contact;
 import com.structure.model.Node;
 import com.structure.view.ViewNode;
 
-public class Tree<T> {
+/*
+
+ int x = abc.compareTo(abc1);
+
+ x será negativo, pois a string abc é menor que a abc1. 
+ x será 0, ambas são idênticas. 
+ x será positivo, abc é maior que abc1 
+
+ */
+
+public class Tree<T extends Comparable<T>> {
 
 	Node<T> root;
 
@@ -11,9 +22,9 @@ public class Tree<T> {
 		return root;
 	}
 
-	public void addNode(int key, T data) {
+	public void addNode(T data) {
 
-		Node<T> newNode = new Node<T>(key, data);
+		Node<T> newNode = new Node<T>(data);
 
 		if (root == null) {
 
@@ -28,8 +39,10 @@ public class Tree<T> {
 			while (true) {
 
 				parent = focusNode;
-
-				if (key < focusNode.getKey()) {
+				
+				int cmp = newNode.getContact().compareTo(data);
+				
+				if (cmp < 0) {
 
 					focusNode = focusNode.getLeftChild();
 
@@ -40,7 +53,7 @@ public class Tree<T> {
 
 					}
 
-				} else {
+				} else if (cmp > 0) {
 
 					focusNode = focusNode.rightChild;
 
@@ -54,6 +67,7 @@ public class Tree<T> {
 				}
 
 			}
+			
 		}
 
 	}
@@ -97,17 +111,19 @@ public class Tree<T> {
 
 	}
 
-	public Node<T> findNode(int key) {
+	public Node<T> findNode(String name) {
 
 		Node<T> focusNode = root;
+		
+		int cmp = ((Contact) focusNode.contact).getName().compareTo(name);
+		
+		while (cmp != 0) {
 
-		while (focusNode.key != key) {
-
-			if (key < focusNode.key) {
+			if (cmp < 0) {
 
 				focusNode = focusNode.leftChild;
 
-			} else {
+			} else if (cmp > 0) {
 
 				focusNode = focusNode.rightChild;
 
