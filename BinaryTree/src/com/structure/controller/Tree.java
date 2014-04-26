@@ -4,16 +4,6 @@ import com.structure.model.Contact;
 import com.structure.model.Node;
 import com.structure.view.ViewNode;
 
-/*
-
- int x = abc.compareTo(abc1);
-
- x será negativo, pois a string abc é menor que a abc1. 
- x será 0, ambas são idênticas. 
- x será positivo, abc é maior que abc1 
-
- */
-
 public class Tree<T extends Comparable<T>> {
 
 	Node<T> root;
@@ -39,10 +29,11 @@ public class Tree<T extends Comparable<T>> {
 			while (true) {
 
 				parent = focusNode;
-				
-				int cmp = newNode.getContact().compareTo(data);
-				
-				if (cmp < 0) {
+
+				int cmp = ((Contact) focusNode.contact).getName().compareTo(
+						((Contact) data).getName());
+
+				if (cmp > 0) {
 
 					focusNode = focusNode.getLeftChild();
 
@@ -53,7 +44,7 @@ public class Tree<T extends Comparable<T>> {
 
 					}
 
-				} else if (cmp > 0) {
+				} else if (cmp < 0) {
 
 					focusNode = focusNode.rightChild;
 
@@ -64,10 +55,14 @@ public class Tree<T extends Comparable<T>> {
 
 					}
 
+				} else {
+
+					break;
+
 				}
 
 			}
-			
+
 		}
 
 	}
@@ -111,31 +106,84 @@ public class Tree<T extends Comparable<T>> {
 
 	}
 
+	public Node<Contact> removeNode(Node<Contact> focusNode, String name) {
+		
+        Node<Contact> p, p2;
+        
+        int cmp = ((Contact) focusNode.contact).getName().compareTo(name);
+        
+        if (cmp == 0) {
+        	
+            if (focusNode.leftChild == focusNode.rightChild) {
+            
+            	return null;
+            
+            } else if (focusNode.leftChild == null) {
+                
+            	return focusNode.rightChild;
+            
+            } else if (focusNode.rightChild == null) {
+            
+            	return focusNode.leftChild;
+            
+            } else {
+                
+            	p2 = focusNode.rightChild;
+                p = focusNode.rightChild;
+                
+                while (p.leftChild != null) {
+                
+                	p = p.leftChild;
+                
+                }
+                
+                p.leftChild = focusNode.leftChild;
+                
+                return p2;
+            }
+            
+        } else if (cmp < 0) {
+        	
+        	focusNode.rightChild = removeNode(focusNode.rightChild, name);
+        	
+        } else {
+        	
+            focusNode.leftChild = removeNode(focusNode.leftChild, name);
+            
+        }
+        
+        return focusNode;
+    }
+	
 	public Node<T> findNode(String name) {
 
 		Node<T> focusNode = root;
-		
-		int cmp = ((Contact) focusNode.contact).getName().compareTo(name);
-		
-		while (cmp != 0) {
 
-			if (cmp < 0) {
+		while (true) {
 
-				focusNode = focusNode.leftChild;
+			if (focusNode == null) {
 
-			} else if (cmp > 0) {
-
-				focusNode = focusNode.rightChild;
+				return null;
 
 			}
 
-			if (focusNode == null)
-				return null;
+			int cmp = ((Contact) focusNode.contact).getName().compareTo(name);
+			
+			if (cmp > 0) {
+
+				focusNode = focusNode.leftChild;
+
+			} else if (cmp < 0) {
+
+				focusNode = focusNode.rightChild;
+
+			} else {
+
+				return focusNode;
+				
+			}
 
 		}
-
-		return focusNode;
-
 	}
 
 }

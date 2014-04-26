@@ -1,5 +1,4 @@
 boss=555-001
-secretary=555-005
 governor=555-004
 president=555-003
 ambassador=555-002
@@ -7,3 +6,4 @@ attendant=555-006
 senator=555-007
 promoter=555-008
 user=555-009
+secretary=555-005

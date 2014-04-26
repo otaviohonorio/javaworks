@@ -9,38 +9,53 @@ public class FileManager {
 
 	private String dir = System.getProperty("user.dir");
 	private String file = dir+"/agenda.txt";
-
+	
 	public String[] Read() {
 
 		String line = null;
 		String tmp = "";
 
 		int i = 0;
+		
 		try {
-			FileReader reader = new FileReader(file);
-			BufferedReader leitor = new BufferedReader(reader);
-			while ((line = leitor.readLine()) != null) {
+			
+			FileReader f = new FileReader(file);
+			BufferedReader r = new BufferedReader(f);
+			
+			while ((line = r.readLine()) != null) {
 				tmp = tmp + line + ";";
 				i++;
 			}
-			leitor.close();
-			reader.close();
+		
+			r.close();
+			f.close();
+		
 		} catch (Exception e) {
+		
 			System.out.println("Error: "+ e.getMessage());
+		
 		}
-		String [] linha = new String[i];
-		linha = tmp.split(";");
+	
+		String [] l = new String[i];
+		l = tmp.split(";");
 
-		return linha;
+		return l;
 	}
 
 	public void Write(String name, String number) {
+		
 		try {
-			FileWriter fw = new FileWriter(file,true);
-			fw.append("\n" + name + " = " + number);
-			fw.close();
+			
+			FileWriter f = new FileWriter(file,true);
+			f.append("\n" + name + " = " + number);
+			f.close();
+			
 		} catch (IOException e) {
+			
 			System.out.println("Error: "+ e.getMessage());
+		
 		}
+		
 	}
+	
 }

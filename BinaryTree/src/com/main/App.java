@@ -1,9 +1,12 @@
 package com.main;
 
 import static java.lang.System.out;
+
 import java.util.Scanner;
+
 import com.structure.controller.Tree;
 import com.structure.model.Contact;
+import com.structure.model.Node;
 import com.structure.utils.FileManager;
 import com.structure.view.ViewNode;
 
@@ -14,27 +17,19 @@ public class App {
 	public static void main(String[] args) {
 
 		Tree<Contact> theTree = new Tree<Contact>();
-
+		
 		FileManager f = new FileManager();
+		
 		String[] line = f.Read();
-
-		int i = 0;
-
+						
 		for (int j = 0; j < line.length; j++) {
+						
+			String[] tmp = line[j].split("=");
+					
+			insert(tmp[0], tmp[1], theTree);
 			
-			String[] tmp = line[i].split("=");
-
-			Contact c = new Contact();
-			c.setName(tmp[0].trim());
-			c.setPhone(tmp[1].trim());
-
-			out.println("HERE!");
-			
-			theTree.addNode(c);
-
-			i++;
 		}
-
+		
 		read = new Scanner(System.in);
 		int opt;
 
@@ -45,7 +40,7 @@ public class App {
 			out.println("[3] List");
 			out.println("[4] Search");
 			out.println("[0] Exit");
-			out.println("Option: ");
+			out.print("Option: ");
 			opt = read.nextInt();
 
 			switch (opt) {
@@ -55,7 +50,7 @@ public class App {
 				break;
 
 			case 2:
-				// remove();
+				remove(theTree);
 				break;
 
 			case 3:
@@ -67,26 +62,53 @@ public class App {
 
 			}
 
+			out.println();
+			
 		} while (opt != 0);
 
 	}
 
 	public static void search(Tree<Contact> theTree) {
 
-		out.println("Name: ");
+		read = new Scanner(System.in);
+		
+		out.print("Name: ");
 		String name = read.nextLine();
 
 		ViewNode.print(theTree.findNode(name));
 
 	}
+	
+	public static void remove(Tree<Contact> theTree) {
 
+		read = new Scanner(System.in);
+		
+		out.print("Name: ");
+		String name = read.nextLine();
+
+		Node<Contact> root = theTree.getRoot();
+		theTree.removeNode(root, name);
+
+	}	
+	
+	public static void insert(String name, String phone, Tree<Contact> theTree) {
+
+		Contact c = new Contact();
+		c.setName(name);
+		c.setPhone(phone);
+
+		theTree.addNode(c);
+
+	}
+	
 	public static void insert(Tree<Contact> theTree) {
 
+		read = new Scanner(System.in);
 		String name, phone;
 
-		out.println("Name: ");
+		out.print("Name: ");
 		name = read.nextLine();
-		out.println("Phone: ");
+		out.print("Phone: ");
 		phone = read.nextLine();
 
 		Contact c = new Contact();
@@ -105,8 +127,7 @@ public class App {
 		out.println("[1] In-Order");
 		out.println("[2] Pre-Order ");
 		out.println("[3] Pos-Order");
-		out.println("[0] Back");
-		out.println("Option: ");
+		out.print("Option: ");
 		opt = read.nextInt();
 
 		switch (opt) {
