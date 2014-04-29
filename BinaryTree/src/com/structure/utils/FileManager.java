@@ -47,7 +47,7 @@ public class FileManager {
 		try {
 			
 			FileWriter f = new FileWriter(file,true);
-			f.append("\n" + name + " = " + number);
+			f.append(name + "=" + number+"\n");
 			f.close();
 			
 		} catch (IOException e) {

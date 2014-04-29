@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import com.structure.controller.Tree;
 import com.structure.model.Contact;
-import com.structure.model.Node;
 import com.structure.utils.FileManager;
 import com.structure.view.ViewNode;
 
@@ -75,6 +74,7 @@ public class App {
 		out.print("Name: ");
 		String name = read.nextLine();
 
+		out.println("Compar: "+theTree.getCompar());
 		ViewNode.print(theTree.findNode(name));
 
 	}
@@ -86,8 +86,7 @@ public class App {
 		out.print("Name: ");
 		String name = read.nextLine();
 
-		Node<Contact> root = theTree.getRoot();
-		theTree.removeNode(root, name);
+		theTree.removeNode(theTree.getRoot(), name);
 
 	}	
 	
@@ -98,7 +97,8 @@ public class App {
 		c.setPhone(phone);
 
 		theTree.addNode(c);
-
+		out.println("Contact ("+name+") insered in node level: "+theTree.getHeight());
+		
 	}
 	
 	public static void insert(Tree<Contact> theTree) {
@@ -115,8 +115,12 @@ public class App {
 		c.setName(name);
 		c.setPhone(phone);
 
+		FileManager f = new FileManager();
+		f.Write(name, phone);
+		
 		theTree.addNode(c);
-
+		out.println("Contact ("+name+") insered in node level: "+theTree.getHeight());
+		
 	}
 
 	public static void list(Tree<Contact> theTree) {
