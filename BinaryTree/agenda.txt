@@ -1,9 +1,12 @@
-boss=555-001
-governor=555-004
-president=555-003
-ambassador=555-002
-senator=555-007
-promoter=555-008
-user=555-009
-secretary=555-005teste=555-011
-teste2=555-012
+Mu=555-001
+Aldebaran=555-002
+Saga=555-003
+Mascara da Morte=555-004
+Aioria=555-005
+Shaka=555-006
+Dohko=555-007
+Miro=555-008
+Aioros=555-009
+Shura=555-010
+Camus=555-011
+Afrodite=555=012
