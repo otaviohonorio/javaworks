@@ -1,5 +1,8 @@
 package com.structure.controller;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import com.structure.model.Contact;
 import com.structure.model.Node;
 import com.structure.view.ViewNode;
@@ -30,7 +33,6 @@ public class Tree<T extends Comparable<T>> {
 
 				parent = focusNode;
 
-				
 				int cmp = ((Contact) focusNode.contact).getName().compareTo(
 						((Contact) data).getName());
 
@@ -63,7 +65,7 @@ public class Tree<T extends Comparable<T>> {
 				}
 
 			}
-			
+
 		}
 
 		return newNode;
@@ -113,7 +115,7 @@ public class Tree<T extends Comparable<T>> {
 
 		if (focusNode == null)
 			return 0;
-				
+
 		int heightLeft = height(focusNode.leftChild);
 		int heightRight = height(focusNode.rightChild);
 
@@ -121,19 +123,19 @@ public class Tree<T extends Comparable<T>> {
 			return heightLeft + 1;
 		else
 			return heightRight + 1;
-		
+
 	}
-	
+
 	public int count(Node<T> focusNode) {
 
 		if (focusNode == null)
 			return 0;
-				
+
 		int countLeft = count(focusNode.leftChild);
 		int countRight = count(focusNode.rightChild);
 
 		return countRight + countLeft + 1;
-		
+
 	}
 
 	public Node<Contact> removeNode(Node<Contact> focusNode, String name) {
@@ -190,7 +192,7 @@ public class Tree<T extends Comparable<T>> {
 
 		Node<T> focusNode = root;
 		int i = 1;
-		
+
 		while (true) {
 
 			if (focusNode == null) {
@@ -200,7 +202,7 @@ public class Tree<T extends Comparable<T>> {
 			}
 
 			int cmp = ((Contact) focusNode.contact).getName().compareTo(name);
-			
+
 			if (cmp > 0) {
 				i++;
 				focusNode = focusNode.leftChild;
@@ -213,6 +215,47 @@ public class Tree<T extends Comparable<T>> {
 				i++;
 				break;
 			}
+
+		}
+
+		focusNode.c = i;
+		return focusNode;
+
+	}
+
+	public Node<T> breadth(Node<T> focusNode, String name) {
+
+		Queue<Node<T>> queue = new LinkedList<Node<T>>();
+		int i = 0;
+
+		if (focusNode == null) {
+			i++;
+			return null;
+		}
+
+		queue.clear();
+		queue.add(focusNode);
+
+		while (!queue.isEmpty()) {
+
+			Node<T> n = (Node<T>) queue.remove();
+
+			int cmp = ((Contact) n.contact).getName().compareTo(name);
+
+			i++;
+
+			if (cmp == 0) {
+
+				focusNode = n;
+				break;
+
+			}
+
+			if (n.leftChild != null)
+				queue.add(n.leftChild);
+
+			if (n.rightChild != null)
+				queue.add(n.rightChild);
 
 		}
 

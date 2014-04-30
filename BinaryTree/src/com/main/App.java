@@ -28,7 +28,7 @@ public class App {
 			insert(tmp[0], tmp[1], theTree);
 
 		}
-
+				
 		read = new Scanner(System.in);
 		int opt;
 
@@ -38,6 +38,7 @@ public class App {
 			out.println("[2] Remove");
 			out.println("[3] List");
 			out.println("[4] Search");
+			out.println("[5] Breadth");
 			out.println("[0] Exit");
 			out.print("Option: ");
 			opt = read.nextInt();
@@ -58,6 +59,10 @@ public class App {
 
 			case 4:
 				search(theTree);
+				break;
+
+			case 5:
+				breadth(theTree);
 
 			}
 
@@ -75,6 +80,17 @@ public class App {
 		String name = read.nextLine();
 
 		ViewNode.printComparasion(theTree.findNode(name));
+
+	}
+	
+	public static void breadth(Tree<Contact> theTree) {
+
+		read = new Scanner(System.in);
+
+		out.print("Name: ");
+		String name = read.nextLine();
+
+		ViewNode.printComparasion(theTree.breadth(theTree.getRoot(), name));
 
 	}
 
