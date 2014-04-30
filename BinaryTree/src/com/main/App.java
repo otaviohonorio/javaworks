@@ -16,24 +16,24 @@ public class App {
 	public static void main(String[] args) {
 
 		Tree<Contact> theTree = new Tree<Contact>();
-		
+
 		FileManager f = new FileManager();
-		
+
 		String[] line = f.Read();
-						
+
 		for (int j = 0; j < line.length; j++) {
-						
+
 			String[] tmp = line[j].split("=");
-					
+
 			insert(tmp[0], tmp[1], theTree);
-			
+
 		}
-		
+
 		read = new Scanner(System.in);
 		int opt;
 
 		do {
-			out.println("List of Contacts");
+			out.println("\nList of Contacts");
 			out.println("[1] Insert");
 			out.println("[2] Remove");
 			out.println("[3] List");
@@ -62,7 +62,7 @@ public class App {
 			}
 
 			out.println();
-			
+
 		} while (opt != 0);
 
 	}
@@ -70,26 +70,25 @@ public class App {
 	public static void search(Tree<Contact> theTree) {
 
 		read = new Scanner(System.in);
-		
+
 		out.print("Name: ");
 		String name = read.nextLine();
 
-		out.println("Compar: "+theTree.getCompar());
-		ViewNode.print(theTree.findNode(name));
+		ViewNode.printComparasion(theTree.findNode(name));
 
 	}
-	
+
 	public static void remove(Tree<Contact> theTree) {
 
 		read = new Scanner(System.in);
-		
+
 		out.print("Name: ");
 		String name = read.nextLine();
 
 		theTree.removeNode(theTree.getRoot(), name);
 
-	}	
-	
+	}
+
 	public static void insert(String name, String phone, Tree<Contact> theTree) {
 
 		Contact c = new Contact();
@@ -97,10 +96,12 @@ public class App {
 		c.setPhone(phone);
 
 		theTree.addNode(c);
-		out.println("Contact ("+name+") insered in node level: "+theTree.getHeight());
-		
+		out.println("Contact (" + name + ") inserted. Node level: "
+				+ theTree.height(theTree.getRoot()) + " Total: "
+				+ theTree.count(theTree.getRoot()));
+
 	}
-	
+
 	public static void insert(Tree<Contact> theTree) {
 
 		read = new Scanner(System.in);
@@ -117,17 +118,19 @@ public class App {
 
 		FileManager f = new FileManager();
 		f.Write(name, phone);
-		
+
 		theTree.addNode(c);
-		out.println("Contact ("+name+") insered in node level: "+theTree.getHeight());
-		
+		out.println("Contact (" + name + ") inserted. Node level: "
+				+ theTree.height(theTree.getRoot()) + " Total: "
+				+ theTree.count(theTree.getRoot()));
+
 	}
 
 	public static void list(Tree<Contact> theTree) {
 
 		int opt;
 
-		out.println("Listing");
+		out.println("\nListing");
 		out.println("[1] In-Order");
 		out.println("[2] Pre-Order ");
 		out.println("[3] Pos-Order");

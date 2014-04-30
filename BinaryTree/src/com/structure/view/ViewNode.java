@@ -13,4 +13,10 @@ public class ViewNode {
 		
 	}
 	
+	public static <T> void printComparasion (Node<T> focusNode) {
+		
+		out.println("Comparasion: "+focusNode.c+" Contact - Name: "+((Contact) focusNode.contact).getName()+" Phone:"+((Contact) focusNode.contact).getPhone());
+		
+	}
+	
 }

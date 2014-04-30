@@ -8,25 +8,6 @@ public class Tree<T extends Comparable<T>> {
 
 	Node<T> root;
 
-	public int compar = 1; 
-	public int height = 1;
-	
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
-	public int getCompar() {
-		return compar;
-	}
-
-	public void setCompar(int compar) {
-		this.compar = compar;
-	}
-
 	public Node<T> getRoot() {
 		return root;
 	}
@@ -34,9 +15,7 @@ public class Tree<T extends Comparable<T>> {
 	public Node<T> addNode(T data) {
 
 		Node<T> newNode = new Node<T>(data);
-		
-		int i = getHeight();		
-		
+
 		if (root == null) {
 
 			root = newNode;
@@ -51,6 +30,7 @@ public class Tree<T extends Comparable<T>> {
 
 				parent = focusNode;
 
+				
 				int cmp = ((Contact) focusNode.contact).getName().compareTo(
 						((Contact) data).getName());
 
@@ -61,7 +41,6 @@ public class Tree<T extends Comparable<T>> {
 					if (focusNode == null) {
 
 						parent.leftChild = newNode;
-						i++;
 						break;
 
 					}
@@ -73,7 +52,6 @@ public class Tree<T extends Comparable<T>> {
 					if (focusNode == null) {
 
 						parent.rightChild = newNode;
-						i++;
 						break;
 
 					}
@@ -85,11 +63,9 @@ public class Tree<T extends Comparable<T>> {
 				}
 
 			}
-
+			
 		}
 
-		setHeight(i);
-		
 		return newNode;
 
 	}
@@ -133,12 +109,37 @@ public class Tree<T extends Comparable<T>> {
 
 	}
 
+	public int height(Node<T> focusNode) {
+
+		if (focusNode == null)
+			return 0;
+				
+		int heightLeft = height(focusNode.leftChild);
+		int heightRight = height(focusNode.rightChild);
+
+		if (heightLeft > heightRight)
+			return heightLeft + 1;
+		else
+			return heightRight + 1;
+		
+	}
+	
+	public int count(Node<T> focusNode) {
+
+		if (focusNode == null)
+			return 0;
+				
+		int countLeft = count(focusNode.leftChild);
+		int countRight = count(focusNode.rightChild);
+
+		return countRight + countLeft + 1;
+		
+	}
+
 	public Node<Contact> removeNode(Node<Contact> focusNode, String name) {
 
 		Node<Contact> p, p2;
 
-		int i = getHeight();
-		
 		int cmp = ((Contact) focusNode.contact).getName().compareTo(name);
 
 		if (cmp == 0) {
@@ -181,46 +182,41 @@ public class Tree<T extends Comparable<T>> {
 
 		}
 
-		setHeight(i--);
-		
 		return focusNode;
-		
+
 	}
 
 	public Node<T> findNode(String name) {
 
 		Node<T> focusNode = root;
-
-		int i = getCompar();
-
+		int i = 1;
+		
 		while (true) {
 
 			if (focusNode == null) {
-
+				i++;
 				return null;
 
 			}
 
-			
 			int cmp = ((Contact) focusNode.contact).getName().compareTo(name);
-			i++;
 			
 			if (cmp > 0) {
-
+				i++;
 				focusNode = focusNode.leftChild;
 
 			} else if (cmp < 0) {
-
+				i++;
 				focusNode = focusNode.rightChild;
 
 			} else {
-
+				i++;
 				break;
 			}
 
 		}
-		
-		setCompar(i);
+
+		focusNode.c = i;
 		return focusNode;
 
 	}
