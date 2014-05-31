@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.structure.controller.Tree;
 import com.structure.model.Contact;
+import com.structure.model.Node;
 import com.structure.utils.FileManager;
 import com.structure.view.ViewNode;
 
@@ -28,7 +29,7 @@ public class App {
 			insert(tmp[0], tmp[1], theTree);
 
 		}
-				
+
 		read = new Scanner(System.in);
 		int opt;
 
@@ -79,10 +80,10 @@ public class App {
 		out.print("Name: ");
 		String name = read.nextLine();
 
-		ViewNode.printComparasion(theTree.findNode(name));
+		ViewNode.printContact(theTree.search(name));
 
 	}
-	
+
 	public static void breadth(Tree<Contact> theTree) {
 
 		read = new Scanner(System.in);
@@ -90,7 +91,7 @@ public class App {
 		out.print("Name: ");
 		String name = read.nextLine();
 
-		ViewNode.printComparasion(theTree.breadth(theTree.getRoot(), name));
+		ViewNode.printContact(theTree.breadth(theTree.getRoot(), name));
 
 	}
 
@@ -101,20 +102,19 @@ public class App {
 		out.print("Name: ");
 		String name = read.nextLine();
 
-		theTree.removeNode(theTree.getRoot(), name);
+		theTree.remove(theTree.getRoot(), name);
 
 	}
 
 	public static void insert(String name, String phone, Tree<Contact> theTree) {
 
-		Contact c = new Contact();
-		c.setName(name);
-		c.setPhone(phone);
+		Contact contact = new Contact();
+		contact.setName(name);
+		contact.setPhone(phone);
 
-		theTree.addNode(c);
-		out.println("Contact (" + name + ") inserted. Node level: "
-				+ theTree.height(theTree.getRoot()) + " Total: "
-				+ theTree.count(theTree.getRoot()));
+		Node<Contact> node = theTree.insert(contact);
+		
+		out.println("Contact (" + name + ") inserted. Node level: "+ node.getDepth());
 
 	}
 
@@ -128,17 +128,14 @@ public class App {
 		out.print("Phone: ");
 		phone = read.nextLine();
 
-		Contact c = new Contact();
-		c.setName(name);
-		c.setPhone(phone);
+		Contact contact = new Contact();
+		contact.setName(name);
+		contact.setPhone(phone);
 
 		FileManager f = new FileManager();
 		f.Write(name, phone);
-
-		theTree.addNode(c);
-		out.println("Contact (" + name + ") inserted. Node level: "
-				+ theTree.height(theTree.getRoot()) + " Total: "
-				+ theTree.count(theTree.getRoot()));
+		
+		theTree.insert(contact);
 
 	}
 
@@ -156,15 +153,15 @@ public class App {
 		switch (opt) {
 
 		case 1:
-			theTree.inOrder(theTree.getRoot());
+			ViewNode.inOrder(theTree.getRoot());
 			break;
 
 		case 2:
-			theTree.preorder(theTree.getRoot());
+			ViewNode.preorder(theTree.getRoot());
 			break;
 
 		case 3:
-			theTree.posOrder(theTree.getRoot());
+			ViewNode.posOrder(theTree.getRoot());
 
 		}
 
