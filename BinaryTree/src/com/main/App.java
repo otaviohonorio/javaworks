@@ -2,6 +2,8 @@ package com.main;
 
 import static java.lang.System.out;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 import com.structure.controller.AVLTree;
@@ -16,9 +18,9 @@ public class App {
 
 	public static void main(String[] args) {
 
-		//Tree<Contact> theTree = new Tree<Contact>();
+		// Tree<Contact> theTree = new Tree<Contact>();
 		AVLTree<Contact> theTree = new AVLTree<Contact>();
-		
+
 		FileManager f = new FileManager();
 
 		String[] line = f.Read();
@@ -27,11 +29,11 @@ public class App {
 
 			String[] tmp = line[j].split("=");
 
-			Node<Contact> node = insert(tmp[0], tmp[1], theTree);
+			insert(tmp[0], tmp[1], theTree);
 
-			View.print(node);
-			
 		}
+		
+		PrintTree(theTree);
 
 		read = new Scanner(System.in);
 		int opt;
@@ -109,7 +111,7 @@ public class App {
 
 	}
 
-	public static Node<Contact> insert(String name, String phone, AVLTree<Contact> theTree) {
+	public static void insert(String name, String phone, AVLTree<Contact> theTree) {
 
 		Contact contact = new Contact();
 		contact.setName(name);
@@ -117,9 +119,7 @@ public class App {
 
 		Node<Contact> node = theTree.insert(contact);
 		theTree.balanceCheck(node);
-		
-		return node;
-		
+
 	}
 
 	public static void insert(AVLTree<Contact> theTree) {
@@ -138,7 +138,7 @@ public class App {
 
 		FileManager f = new FileManager();
 		f.Write(name, phone);
-		
+
 		theTree.insert(contact);
 
 	}
@@ -170,6 +170,39 @@ public class App {
 		}
 
 		return;
+	}
+
+	public static <T> void PrintTree(AVLTree<Contact> theTree) {
+
+		Node<Contact> root = (Node<Contact>) theTree.getRoot();
+		root.level = 0;
+
+		Queue<Node<Contact>> queue = new LinkedList<Node<Contact>>();
+		queue.add(root);
+
+		while (!queue.isEmpty()) {
+
+			Node<Contact> node = queue.poll();
+
+			System.out.println("Level: "+node.level+" Deph: "+node.getDepth()+ " Name: "+ node.getData().getName());
+
+			int level = node.level;
+
+			Node<Contact> left = node.getLeftChild();
+			Node<Contact> right = node.getRightChild();
+
+			if (left != null) {
+				left.level = level + 1;
+				queue.add(left);
+			}
+
+			if (right != null) {
+				right.level = level + 1;
+				queue.add(right);
+			}
+
+		}
+
 	}
 
 }

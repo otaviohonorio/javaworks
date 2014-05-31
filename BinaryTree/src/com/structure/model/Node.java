@@ -6,6 +6,7 @@ public class Node<T> {
 	public Node<T> rightChild;
 	public T data;
 	public int depth = 1;
+	public int level = 1;
 
 	public Node(T data) {
 		this.data = data;
