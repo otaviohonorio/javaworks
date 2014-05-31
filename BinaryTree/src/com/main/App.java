@@ -4,7 +4,7 @@ import static java.lang.System.out;
 
 import java.util.Scanner;
 
-import com.structure.controller.Tree;
+import com.structure.controller.AVLTree;
 import com.structure.model.Contact;
 import com.structure.model.Node;
 import com.structure.utils.FileManager;
@@ -16,8 +16,9 @@ public class App {
 
 	public static void main(String[] args) {
 
-		Tree<Contact> theTree = new Tree<Contact>();
-
+		//Tree<Contact> theTree = new Tree<Contact>();
+		AVLTree<Contact> theTree = new AVLTree<Contact>();
+		
 		FileManager f = new FileManager();
 
 		String[] line = f.Read();
@@ -73,7 +74,7 @@ public class App {
 
 	}
 
-	public static void search(Tree<Contact> theTree) {
+	public static void search(AVLTree<Contact> theTree) {
 
 		read = new Scanner(System.in);
 
@@ -84,7 +85,7 @@ public class App {
 
 	}
 
-	public static void breadth(Tree<Contact> theTree) {
+	public static void breadth(AVLTree<Contact> theTree) {
 
 		read = new Scanner(System.in);
 
@@ -95,7 +96,7 @@ public class App {
 
 	}
 
-	public static void remove(Tree<Contact> theTree) {
+	public static void remove(AVLTree<Contact> theTree) {
 
 		read = new Scanner(System.in);
 
@@ -106,7 +107,7 @@ public class App {
 
 	}
 
-	public static void insert(String name, String phone, Tree<Contact> theTree) {
+	public static void insert(String name, String phone, AVLTree<Contact> theTree) {
 
 		Contact contact = new Contact();
 		contact.setName(name);
@@ -118,7 +119,7 @@ public class App {
 
 	}
 
-	public static void insert(Tree<Contact> theTree) {
+	public static void insert(AVLTree<Contact> theTree) {
 
 		read = new Scanner(System.in);
 		String name, phone;
@@ -139,7 +140,7 @@ public class App {
 
 	}
 
-	public static void list(Tree<Contact> theTree) {
+	public static void list(AVLTree<Contact> theTree) {
 
 		int opt;
 

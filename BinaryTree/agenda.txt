@@ -1,12 +1,12 @@
+Camus=555-011
+Afrodite=555=012
 Mu=555-001
 Aldebaran=555-002
 Saga=555-003
-Mascara da Morte=555-004
 Aioria=555-005
+Mascara da Morte=555-004
 Shaka=555-006
 Dohko=555-007
 Miro=555-008
 Aioros=555-009
 Shura=555-010
-Camus=555-011
-Afrodite=555=012
