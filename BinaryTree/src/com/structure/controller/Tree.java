@@ -43,7 +43,6 @@ public class Tree<T extends Comparable<T>> {
 			return 0;
 
 		return focusNode.getDepth();
-		// 1 + Math.max(depth(node.getLeft()), depth(node.getRight()));
 
 	}
 

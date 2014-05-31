@@ -8,7 +8,7 @@ import com.structure.controller.AVLTree;
 import com.structure.model.Contact;
 import com.structure.model.Node;
 import com.structure.utils.FileManager;
-import com.structure.view.ViewNode;
+import com.structure.view.View;
 
 public class App {
 
@@ -27,8 +27,10 @@ public class App {
 
 			String[] tmp = line[j].split("=");
 
-			insert(tmp[0], tmp[1], theTree);
+			Node<Contact> node = insert(tmp[0], tmp[1], theTree);
 
+			View.print(node);
+			
 		}
 
 		read = new Scanner(System.in);
@@ -81,7 +83,7 @@ public class App {
 		out.print("Name: ");
 		String name = read.nextLine();
 
-		ViewNode.printContact(theTree.search(name));
+		View.printContact(theTree.search(name));
 
 	}
 
@@ -92,7 +94,7 @@ public class App {
 		out.print("Name: ");
 		String name = read.nextLine();
 
-		ViewNode.printContact(theTree.breadth(theTree.getRoot(), name));
+		View.printContact(theTree.breadth(theTree.getRoot(), name));
 
 	}
 
@@ -107,16 +109,17 @@ public class App {
 
 	}
 
-	public static void insert(String name, String phone, AVLTree<Contact> theTree) {
+	public static Node<Contact> insert(String name, String phone, AVLTree<Contact> theTree) {
 
 		Contact contact = new Contact();
 		contact.setName(name);
 		contact.setPhone(phone);
 
 		Node<Contact> node = theTree.insert(contact);
+		theTree.balanceCheck(node);
 		
-		out.println("Contact (" + name + ") inserted. Node level: "+ node.getDepth());
-
+		return node;
+		
 	}
 
 	public static void insert(AVLTree<Contact> theTree) {
@@ -154,15 +157,15 @@ public class App {
 		switch (opt) {
 
 		case 1:
-			ViewNode.inOrder(theTree.getRoot());
+			View.inOrder(theTree.getRoot());
 			break;
 
 		case 2:
-			ViewNode.preorder(theTree.getRoot());
+			View.preorder(theTree.getRoot());
 			break;
 
 		case 3:
-			ViewNode.posOrder(theTree.getRoot());
+			View.posOrder(theTree.getRoot());
 
 		}
 

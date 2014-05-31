@@ -4,9 +4,7 @@ import com.structure.model.Node;
 
 public class AVLTree<T extends Comparable<T>> extends Tree<T> {
 
-	public Node<T> balance(T data) {
-	
-		Node<T> node = insert(data);
+	public Node<T> balanceCheck(Node<T> node) {
 		
 		switch (balanceFactor(node)) {
 		case 1:

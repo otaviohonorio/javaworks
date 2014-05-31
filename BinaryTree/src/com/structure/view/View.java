@@ -5,7 +5,7 @@ import static java.lang.System.out;
 import com.structure.model.Contact;
 import com.structure.model.Node;
 
-public class ViewNode {
+public class View {
 
 	public static <T> void inOrder(Node<T> focusNode) {
 
@@ -13,7 +13,7 @@ public class ViewNode {
 
 			inOrder(focusNode.leftChild);
 
-			ViewNode.print(focusNode);
+			View.print(focusNode);
 
 			inOrder(focusNode.rightChild);
 
@@ -25,7 +25,7 @@ public class ViewNode {
 
 		if (focusNode != null) {
 
-			ViewNode.print(focusNode);
+			View.print(focusNode);
 
 			preorder(focusNode.leftChild);
 			preorder(focusNode.rightChild);
@@ -41,15 +41,15 @@ public class ViewNode {
 			posOrder(focusNode.leftChild);
 			posOrder(focusNode.rightChild);
 
-			ViewNode.print(focusNode);
+			View.print(focusNode);
 		}
 
 	}
 
 	public static <T> void print(Node<T> focusNode) {
 
-		out.println("Name: " + ((Contact) focusNode.data).getName() + " Phone:"
-				+ ((Contact) focusNode.data).getPhone() + " Deph: "
+		out.println("Name: " + ((Contact) focusNode.getData()).getName() + " Phone:"
+				+ ((Contact) focusNode.getData()).getPhone() + " Deph: "
 				+ focusNode.getDepth());
 
 	}
